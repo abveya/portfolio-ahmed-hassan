@@ -213,7 +213,6 @@ for (let i = 0; i < portfolioFilter.length; i++) {
                 e.target.getAttribute("data-filter") == "all"
             ) {
                 setTimeout(function () {
-
                     portfolioItemsArr[j].style.display = "block";
 
                     setTimeout(function () {
@@ -235,38 +234,62 @@ for (let i = 0; i < portfolioFilter.length; i++) {
 
 //slider logic
 let x = 0;
-testimonialsCarousel.style.translate = `${x}%`
+
+testimonialsCarousel.style.translate = `${x}%`;
 
 nextBtn.addEventListener("click", function () {
-    if (x == 3) {
-        x = 0;
+    if (window.innerWidth <= 1024) {
+        if (x == 4) {
+            x = 0;
+        } else {
+            x++;
+        }
     } else {
-        x++;
+        if (x == 3) {
+            x = 0;
+        } else {
+            x++;
+        }
     }
-    update()
+
+    update();
 });
 
 prevBtn.addEventListener("click", function () {
-    if (x == 0) {
-        x = 3
+    if (window.innerWidth <= 1024) {
+        if (x == 0) {
+            x = 4;
+        } else {
+            x--;
+        }
+    } else {
+        if (x == 0) {
+            x = 3;
+        } else {
+            x--;
+        }
     }
-    else {
-        x--;
-    }
-    update()
 
+    update();
 });
 
 carouselIndicator[0].classList.add("active");
 
 function update() {
-    for (let i = 0; i < carouselIndicator.length; i++) {
+  for (let i = 0; i < carouselIndicator.length; i++) {
         carouselIndicator[i].classList.remove("active");
     }
-    carouselIndicator[x].classList.add("active");
-    testimonialsCarousel.style.translate = `${x * 33.333}%`
-}
 
+    if (x < carouselIndicator.length) {
+        carouselIndicator[x].classList.add("active");
+    }
+    
+    if (window.innerWidth <= 1024) {
+        testimonialsCarousel.style.translate = `${x * 50}%`;
+    } else {
+        testimonialsCarousel.style.translate = `${x * 33.333}%`;
+    }
+}
 
 for (let i = 0; i < carouselIndicator.length; i++) {
 
