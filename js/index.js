@@ -276,14 +276,14 @@ prevBtn.addEventListener("click", function () {
 carouselIndicator[0].classList.add("active");
 
 function update() {
-  for (let i = 0; i < carouselIndicator.length; i++) {
+    for (let i = 0; i < carouselIndicator.length; i++) {
         carouselIndicator[i].classList.remove("active");
     }
 
     if (x < carouselIndicator.length) {
         carouselIndicator[x].classList.add("active");
     }
-    
+
     if (window.innerWidth <= 1024) {
         testimonialsCarousel.style.translate = `${x * 50}%`;
     } else {
